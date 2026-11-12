@@ -1,1050 +1,382 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Food Corner Restaurant</title>
 
     <style>
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             font-family: Arial, sans-serif;
-            background: #fff8f2;
-            color: #222;
+            background-color: #fff8f2;
+            color: #333;
             line-height: 1.6;
         }
 
-        /* ================= HEADER ================= */
-
         header {
-            background: linear-gradient(135deg, #d9534f, #f08a24);
+            background-color: #d9534f;
             color: white;
             text-align: center;
-            padding: 40px 20px;
+            padding: 30px 15px;
         }
 
         header h1 {
-            font-size: 42px;
-            margin-bottom: 8px;
+            font-size: 36px;
         }
-
-        header p {
-            font-size: 18px;
-        }
-
-        #foodGreeting {
-            margin-top: 15px;
-            color: white;
-            font-size: 17px;
-        }
-
-        /* ================= NAVIGATION ================= */
 
         nav {
-            background: white;
+            background-color: white;
             text-align: center;
-            padding: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            padding: 12px;
             position: sticky;
             top: 0;
-            z-index: 100;
         }
 
         nav a {
-            text-decoration: none;
             color: #d9534f;
+            text-decoration: none;
             font-weight: bold;
-            margin: 0 15px;
-            transition: 0.3s;
+            margin: 0 10px;
         }
 
         nav a:hover {
             color: #f08a24;
         }
 
-        /* ================= MAIN ================= */
-
         .container {
             width: 90%;
-            max-width: 1100px;
-            margin: 35px auto;
+            max-width: 1000px;
+            margin: 25px auto;
         }
 
-        .hero {
-            background: white;
-            padding: 35px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
-            margin-bottom: 30px;
+        section, .welcome {
+            background-color: white;
+            padding: 22px;
+            margin-bottom: 22px;
+            border-radius: 10px;
         }
 
-        .hero h2 {
+        h2 {
             color: #d9534f;
             margin-bottom: 12px;
         }
 
-        .hero p {
-            color: #555;
-            margin-bottom: 8px;
-        }
-
-        /* ================= SECTIONS ================= */
-
-        section {
-            background: white;
-            padding: 30px;
-            margin-bottom: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
-        }
-
-        section h2 {
-            color: #d9534f;
-            margin-bottom: 15px;
-        }
-
-        /* ================= BUTTONS ================= */
-
         button {
-            background: #d9534f;
+            background-color: #d9534f;
             color: white;
             border: none;
-            padding: 11px 18px;
-            border-radius: 7px;
+            padding: 10px 15px;
+            margin: 5px 3px;
+            border-radius: 5px;
             cursor: pointer;
-            font-size: 15px;
-            margin: 5px;
-            transition: 0.3s;
         }
 
         button:hover {
-            background: #b52b27;
-            transform: translateY(-2px);
+            background-color: #b52b27;
         }
 
-        /* ================= CHEF STORY ================= */
-
-        .hidden-recipe {
+        #chefStory {
             display: none;
-            background: #fff8dc;
-            padding: 18px;
-            margin-top: 15px;
-            border-left: 4px solid #f0ad4e;
-            border-radius: 7px;
-        }
-
-        /* ================= FEATURED DISH ================= */
-
-        .dish-buttons {
-            margin: 15px 0;
-        }
-
-        .dish-box {
-            margin-top: 20px;
-            padding: 25px;
-            border: 2px dashed #d9534f;
-            border-radius: 12px;
-            background: #fffaf7;
-        }
-
-        .dish-box h3 {
-            color: #d9534f;
-            font-size: 24px;
-            margin-bottom: 8px;
-        }
-
-        .dish-price {
-            color: #f08a24;
-            font-size: 23px;
-            font-weight: bold;
+            background-color: #fff3df;
+            padding: 12px;
             margin-top: 10px;
+            border-left: 4px solid #f08a24;
         }
 
-        /* ================= MENU ================= */
+        .dish-box, .total-box, .hours-box {
+            background-color: #fff3df;
+            padding: 15px;
+            margin-top: 12px;
+            border-radius: 6px;
+        }
 
-        .menu-table {
+        #dishPrice, #foodTotal {
+            color: #d9534f;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
-            overflow: hidden;
-            border-radius: 8px;
+            margin-top: 12px;
         }
 
-        .menu-table th {
-            background: #d9534f;
-            color: white;
-            padding: 14px;
+        th, td {
+            padding: 10px;
             text-align: left;
+            border-bottom: 1px solid #ddd;
         }
 
-        .menu-table td {
-            padding: 13px;
-            border-bottom: 1px solid #eee;
+        th {
+            background-color: #d9534f;
+            color: white;
         }
 
-        .menu-table tr:nth-child(even) {
-            background: #fff8f3;
-        }
-
-        .menu-table tr:hover {
-            background: #fff0e5;
-        }
-
-        .price {
-            font-weight: bold;
-            color: #d9534f;
-        }
-
-        /* ================= ORDER CALCULATOR ================= */
-
-        .form-group {
-            margin-bottom: 18px;
+        input, select {
+            width: 100%;
+            max-width: 500px;
+            padding: 10px;
+            margin: 5px 0 14px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
         }
 
         label {
-            font-weight: bold;
             display: block;
-        }
-
-        input,
-        select {
-            width: 100%;
-            max-width: 550px;
-            padding: 11px;
-            margin-top: 6px;
-            border: 1px solid #bbb;
-            border-radius: 6px;
-            font-size: 15px;
-        }
-
-        input:focus,
-        select:focus {
-            outline: none;
-            border-color: #d9534f;
-            box-shadow: 0 0 5px rgba(217,83,79,0.2);
-        }
-
-        .total-box {
-            margin-top: 20px;
-            background: #fff4e8;
-            padding: 20px;
-            border-left: 4px solid #f08a24;
-            border-radius: 7px;
-        }
-
-        #foodTotal {
-            color: #d9534f;
-            font-size: 26px;
-        }
-
-        /* ================= BOOKING FORM ================= */
-
-        .booking-info {
-            background: #fff8f3;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-
-        .error {
-            color: #d93025;
-            font-weight: bold;
-        }
-
-        .success {
-            color: #168b36;
             font-weight: bold;
         }
 
         #bookingStatus {
-            margin-top: 15px;
+            margin-top: 12px;
+            font-weight: bold;
         }
-
-        /* ================= HOURS ================= */
-
-        .hours-box {
-            background: #fff8f3;
-            border-left: 4px solid #d9534f;
-            padding: 20px;
-            border-radius: 7px;
-        }
-
-        .hours-box strong {
-            color: #d9534f;
-        }
-
-        /* ================= FOOTER ================= */
 
         footer {
-            background: #542b20;
+            background-color: #542b20;
             color: white;
             text-align: center;
-            padding: 25px;
-            margin-top: 40px;
+            padding: 20px;
         }
 
-        footer p {
-            margin: 5px;
-        }
-
-        /* ================= RESPONSIVE ================= */
-
-        @media (max-width: 700px) {
-
-            header h1 {
-                font-size: 32px;
-            }
-
+        @media (max-width: 600px) {
             nav a {
                 display: inline-block;
-                margin: 6px 8px;
+                margin: 5px;
             }
 
-            .menu-table {
-                font-size: 14px;
+            header h1 {
+                font-size: 28px;
             }
 
-            .menu-table th,
-            .menu-table td {
-                padding: 9px;
+            section, .welcome {
+                padding: 15px;
             }
-
         }
-
-        @media (max-width: 500px) {
-
-            .container {
-                width: 94%;
-            }
-
-            section,
-            .hero {
-                padding: 20px;
-            }
-
-            nav a {
-                display: block;
-                margin: 8px;
-            }
-
-            .menu-table {
-                font-size: 13px;
-            }
-
-        }
-
     </style>
-
 </head>
-
 
 <body>
 
-
-    <!-- ================= HEADER ================= -->
-
     <header>
-
         <h1>🍴 Food Corner</h1>
-
         <p>Delicious Food | Great Taste | Happy Moments</p>
-
-        <!-- Task 2: Dynamic Greeting -->
-
         <h3 id="foodGreeting"></h3>
-
     </header>
 
-
-    <!-- ================= NAVIGATION ================= -->
-
     <nav>
-
         <a href="#home">Home</a>
-        <a href="#menu">Menu</a>
         <a href="#special">Chef's Special</a>
+        <a href="#menu">Menu</a>
         <a href="#order">Order</a>
         <a href="#booking">Book Table</a>
         <a href="#hours">Hours</a>
-
     </nav>
-
 
     <main class="container">
 
-
-        <!-- ================= HOME ================= -->
-
-        <div class="hero" id="home">
-
+        <div class="welcome" id="home">
             <h2>Welcome to Food Corner</h2>
-
-            <p>
-                Welcome to Food Corner Restaurant.
-                We serve fresh, delicious and hygienic food
-                for our customers.
-            </p>
-
-            <p>
-                Enjoy tasty meals, refreshing beverages and
-                memorable moments with your family and friends.
-            </p>
-
+            <p>We serve fresh, tasty and hygienic food for our customers.</p>
+            <p>Visit us with your family and friends. Enjoy every meal!</p>
         </div>
 
-
-        <!-- ================= TASK 4 ================= -->
-
         <section id="special">
-
             <h2>👨‍🍳 Chef's Special Story</h2>
+            <p>Know more about our chef and our food.</p>
+            <button onclick="showStory()">Read Chef's Message</button>
 
-            <p>
-                Discover the story behind our delicious food.
-            </p>
-
-            <button onclick="toggleChefStory()">
-                Read Chef's Message
-            </button>
-
-            <div id="chefStory" class="hidden-recipe">
-
-                <p>
-                    Our head chef brings 15 years of culinary
-                    expertise, combining authentic Italian pizzas
-                    with traditional Indian spices to serve
-                    unforgettable meals every day!
-                </p>
-
+            <div id="chefStory">
+                Our chef prepares every dish with fresh ingredients and care.
+                We want every customer to enjoy a tasty meal.
             </div>
-
         </section>
-
-
-        <!-- ================= TASK 5 ================= -->
 
         <section>
+            <h2>⭐ Today's Featured Food</h2>
+            <p>Click a button to see the food details.</p>
 
-            <h2>⭐ Today's Featured Item</h2>
-
-            <p>
-                Click below to preview dish details.
-            </p>
-
-            <div class="dish-buttons">
-
-                <button onclick="changeSpecial(
-                    'Farmhouse Pizza',
-                    'Loaded with fresh veggies, mozzarella cheese & Italian herbs.',
-                    '₹250'
-                )">
-                    🍕 Pizza
-                </button>
-
-                <button onclick="changeSpecial(
-                    'Paneer Tikka',
-                    'Marinated cottage cheese cubes grilled to perfection in tandoor.',
-                    '₹180'
-                )">
-                    🧀 Paneer Tikka
-                </button>
-
-                <button onclick="changeSpecial(
-                    'Crispy Veg Burger',
-                    'Crispy veg patty topped with spicy sauce and crunchy lettuce.',
-                    '₹120'
-                )">
-                    🍔 Veg Burger
-                </button>
-
-            </div>
-
+            <button onclick="changeDish('Farmhouse Pizza', 'Fresh vegetables and cheese.', '₹250')">Pizza</button>
+            <button onclick="changeDish('Paneer Tikka', 'Grilled paneer with Indian spices.', '₹180')">Paneer Tikka</button>
+            <button onclick="changeDish('Veg Burger', 'Crispy vegetable patty with sauce.', '₹120')">Veg Burger</button>
 
             <div class="dish-box">
-
-                <h3 id="dishTitle">
-                    Farmhouse Pizza
-                </h3>
-
-                <p id="dishDesc">
-                    Loaded with fresh veggies,
-                    mozzarella cheese & Italian herbs.
-                </p>
-
-                <p class="dish-price" id="dishPrice">
-                    ₹250
-                </p>
-
+                <h3 id="dishTitle">Farmhouse Pizza</h3>
+                <p id="dishDescription">Fresh vegetables and cheese.</p>
+                <p id="dishPrice">₹250</p>
             </div>
-
         </section>
 
-
-        <!-- ================= MENU ================= -->
-
         <section id="menu">
-
-            <h2>🍽️ Our Special Menu</h2>
-
-            <table class="menu-table">
-
+            <h2>🍽️ Our Menu</h2>
+            <table>
                 <tr>
-
                     <th>Food Item</th>
                     <th>Category</th>
                     <th>Price</th>
-
                 </tr>
-
                 <tr>
-
                     <td>Pizza</td>
                     <td>Italian</td>
-                    <td class="price">₹250</td>
-
+                    <td>₹250</td>
                 </tr>
-
                 <tr>
-
                     <td>Paneer Tikka</td>
                     <td>Indian</td>
-                    <td class="price">₹180</td>
-
+                    <td>₹180</td>
                 </tr>
-
                 <tr>
-
                     <td>Veg Burger</td>
                     <td>Fast Food</td>
-                    <td class="price">₹120</td>
-
+                    <td>₹120</td>
                 </tr>
-
                 <tr>
-
                     <td>Cold Coffee</td>
-                    <td>Beverage</td>
-                    <td class="price">₹100</td>
-
+                    <td>Drink</td>
+                    <td>₹100</td>
                 </tr>
-
             </table>
-
         </section>
-
-
-        <!-- ================= TASK 3 ================= -->
 
         <section id="order">
+            <h2>🧾 Order Calculator</h2>
+            <p>Select a food item and quantity to calculate your bill.</p>
 
-            <h2>🧾 Quick Order Calculator</h2>
+            <label for="foodSelect">Choose Food:</label>
+            <select id="foodSelect" onchange="calculateTotal()">
+                <option value="0">Select an item</option>
+                <option value="250">Pizza - ₹250</option>
+                <option value="180">Paneer Tikka - ₹180</option>
+                <option value="120">Veg Burger - ₹120</option>
+                <option value="100">Cold Coffee - ₹100</option>
+            </select>
 
-            <p>
-                Select a food item and quantity to calculate
-                your estimated bill.
-            </p>
-
-            <br>
-
-
-            <div class="form-group">
-
-                <label>
-                    Select Food Item:
-                </label>
-
-                <select
-                    id="foodSelect"
-                    onchange="calculateFoodTotal()"
-                >
-
-                    <option value="0">
-                        -- Select Item --
-                    </option>
-
-                    <option value="250">
-                        Pizza - ₹250
-                    </option>
-
-                    <option value="180">
-                        Paneer Tikka - ₹180
-                    </option>
-
-                    <option value="120">
-                        Veg Burger - ₹120
-                    </option>
-
-                    <option value="100">
-                        Cold Coffee - ₹100
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Quantity:
-                </label>
-
-                <input
-                    type="number"
-                    id="foodQty"
-                    min="1"
-                    value="1"
-                    oninput="calculateFoodTotal()"
-                >
-
-            </div>
-
+            <label for="foodQty">Quantity:</label>
+            <input type="number" id="foodQty" value="1" min="1" oninput="calculateTotal()">
 
             <div class="total-box">
-
-                <h3>
-                    Total Bill:
-                    ₹<span id="foodTotal">0</span>
-                </h3>
-
+                Total Bill: ₹<span id="foodTotal">0</span>
             </div>
-
         </section>
-
-
-        <!-- ================= TASK 1 ================= -->
 
         <section id="booking">
-
-            <h2>📅 Table Booking Form</h2>
-
-            <div class="booking-info">
-
-                <p>
-                    Reserve a table by entering your details below.
-                    All fields are required.
-                </p>
-
-            </div>
-
+            <h2>📅 Book a Table</h2>
+            <p>Enter your details to make a table booking.</p>
 
             <form id="bookingForm">
+                <label for="custName">Your Name:</label>
+                <input type="text" id="custName" placeholder="Enter your name">
 
+                <label for="custEmail">Email:</label>
+                <input type="text" id="custEmail" placeholder="Enter your email">
 
-                <div class="form-group">
+                <label for="custMobile">Mobile Number:</label>
+                <input type="text" id="custMobile" placeholder="Enter 10 digit mobile number">
 
-                    <label>
-                        Customer Name:
-                    </label>
+                <label for="guestCount">Number of Guests:</label>
+                <input type="number" id="guestCount" min="1" max="20" placeholder="Enter guests (1 to 20)">
 
-                    <input
-                        type="text"
-                        id="custName"
-                        placeholder="Enter your name"
-                    >
+                <label for="bookingDateTime">Booking Date and Time:</label>
+                <input type="datetime-local" id="bookingDateTime">
 
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Email:
-                    </label>
-
-                    <input
-                        type="text"
-                        id="custEmail"
-                        placeholder="example@gmail.com"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Mobile Number:
-                    </label>
-
-                    <input
-                        type="text"
-                        id="custMobile"
-                        placeholder="Enter 10 digit mobile number"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Number of Guests:
-                    </label>
-
-                    <input
-                        type="number"
-                        id="guestCount"
-                        min="1"
-                        max="20"
-                        placeholder="1 - 20"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Booking Date & Time:
-                    </label>
-
-                    <input
-                        type="datetime-local"
-                        id="bookingDateTime"
-                    >
-
-                </div>
-
-
-                <button type="submit">
-                    Book Table
-                </button>
-
+                <button type="submit">Book Table</button>
             </form>
 
-
             <p id="bookingStatus"></p>
-
         </section>
-
-
-        <!-- ================= OPENING HOURS ================= -->
 
         <section id="hours">
-
             <h2>🕒 Opening Hours</h2>
-
             <div class="hours-box">
-
-                <p>
-                    <strong>Monday - Sunday:</strong>
-                    11:00 AM to 10:00 PM
-                </p>
-
-                <p>
-                    <strong>Kitchen:</strong>
-                    11:30 AM to 9:30 PM
-                </p>
-
+                <p><b>Monday to Sunday:</b> 11:00 AM to 10:00 PM</p>
+                <p><b>Kitchen Time:</b> 11:30 AM to 9:30 PM</p>
             </div>
-
         </section>
-
 
     </main>
 
-
-    <!-- ================= FOOTER ================= -->
-
     <footer>
-
-        <p>
-            © 2026 Food Corner Restaurant
-        </p>
-
-        <p>
-            Delicious Food | Great Taste | Happy Moments
-        </p>
-
+        <p>© 2026 Food Corner Restaurant</p>
+        <p>Delicious Food | Great Taste | Happy Moments</p>
     </footer>
 
-
-    <!-- ================= JAVASCRIPT ================= -->
-
     <script>
+        // 1. Show greeting according to the current time
+        let hour = new Date().getHours();
 
+        if (hour < 12) {
+            document.getElementById("foodGreeting").innerText = "Good Morning!";
+        } else if (hour < 18) {
+            document.getElementById("foodGreeting").innerText = "Good Afternoon!";
+        } else {
+            document.getElementById("foodGreeting").innerText = "Good Evening!";
+        }
 
-        /* =========================================
-           TASK 2: DYNAMIC GREETING
-        ========================================= */
-
-        window.onload = function() {
-
-            let hour = new Date().getHours();
-
-            let greeting = "";
-
-            if (hour < 12) {
-
-                greeting =
-                    "Good Morning! Enjoy fresh breakfast at Food Corner.";
-
-            }
-
-            else if (hour < 18) {
-
-                greeting =
-                    "Good Afternoon! Drop by for our special Lunch menu.";
-
-            }
-
-            else {
-
-                greeting =
-                    "Good Evening! Welcome to Food Corner Dinner Time.";
-
-            }
-
-            document.getElementById(
-                "foodGreeting"
-            ).innerText = greeting;
-
-        };
-
-
-        /* =========================================
-           TASK 4: SHOW / HIDE CONTENT
-        ========================================= */
-
-        function toggleChefStory() {
-
-            let story =
-                document.getElementById(
-                    "chefStory"
-                );
+        // 2. Show or hide the chef's message
+        function showStory() {
+            let story = document.getElementById("chefStory");
 
             if (story.style.display === "block") {
-
                 story.style.display = "none";
-
-            }
-
-            else {
-
+            } else {
                 story.style.display = "block";
+            }
+        }
 
+        // 3. Change the featured food details
+        function changeDish(name, description, price) {
+            document.getElementById("dishTitle").innerText = name;
+            document.getElementById("dishDescription").innerText = description;
+            document.getElementById("dishPrice").innerText = price;
+        }
+
+        // 4. Calculate the food bill
+        function calculateTotal() {
+            let price = Number(document.getElementById("foodSelect").value);
+            let quantity = Number(document.getElementById("foodQty").value);
+
+            if (quantity < 1) {
+                quantity = 1;
             }
 
+            let total = price * quantity;
+            document.getElementById("foodTotal").innerText = total;
         }
 
-
-        /* =========================================
-           TASK 5: DYNAMIC DISH CONTENT
-        ========================================= */
-
-        function changeSpecial(
-            title,
-            desc,
-            price
-        ) {
-
-            document.getElementById(
-                "dishTitle"
-            ).innerText = title;
-
-            document.getElementById(
-                "dishDesc"
-            ).innerText = desc;
-
-            document.getElementById(
-                "dishPrice"
-            ).innerText = price;
-
-        }
-
-
-        /* =========================================
-           TASK 3: DYNAMIC PRICE CALCULATION
-        ========================================= */
-
-        function calculateFoodTotal() {
-
-            let price =
-                parseInt(
-                    document.getElementById(
-                        "foodSelect"
-                    ).value
-                ) || 0;
-
-
-            let qty =
-                parseInt(
-                    document.getElementById(
-                        "foodQty"
-                    ).value
-                ) || 0;
-
-
-            let total =
-                price * qty;
-
-
-            document.getElementById(
-                "foodTotal"
-            ).innerText =
-                total.toLocaleString("en-IN");
-
-        }
-
-
-        /* =========================================
-           TASK 1: TABLE BOOKING VALIDATION
-        ========================================= */
-
-        document
-            .getElementById("bookingForm")
-            .addEventListener(
-                "submit",
-                function(event) {
-
-                    event.preventDefault();
-
-
-                    let name =
-                        document.getElementById(
-                            "custName"
-                        ).value.trim();
-
-
-                    let email =
-                        document.getElementById(
-                            "custEmail"
-                        ).value.trim();
-
-
-                    let mobile =
-                        document.getElementById(
-                            "custMobile"
-                        ).value.trim();
-
-
-                    let guests =
-                        document.getElementById(
-                            "guestCount"
-                        ).value;
-
-
-                    let dateTime =
-                        document.getElementById(
-                            "bookingDateTime"
-                        ).value;
-
-
-                    let status =
-                        document.getElementById(
-                            "bookingStatus"
-                        );
-
-
-                    /* NAME */
-
-                    if (name === "") {
-
-                        status.innerHTML =
-                            "<span class='error'>" +
-                            "Please enter customer name." +
-                            "</span>";
-
-                        return;
-
-                    }
-
-
-                    /* EMAIL */
-
-                    if (
-                        !email.includes("@") ||
-                        !email.includes(".")
-                    ) {
-
-                        status.innerHTML =
-                            "<span class='error'>" +
-                            "Please enter a valid email address." +
-                            "</span>";
-
-                        return;
-
-                    }
-
-
-                    /* MOBILE */
-
-                    if (
-                        mobile.length !== 10 ||
-                        isNaN(mobile)
-                    ) {
-
-                        status.innerHTML =
-                            "<span class='error'>" +
-                            "Mobile number must be 10 digits." +
-                            "</span>";
-
-                        return;
-
-                    }
-
-
-                    /* GUEST COUNT */
-
-                    if (
-                        guests < 1 ||
-                        guests > 20 ||
-                        isNaN(guests)
-                    ) {
-
-                        status.innerHTML =
-                            "<span class='error'>" +
-                            "Guests count must be between 1 and 20." +
-                            "</span>";
-
-                        return;
-
-                    }
-
-
-                    /* DATE AND TIME */
-
-                    if (dateTime === "") {
-
-                        status.innerHTML =
-                            "<span class='error'>" +
-                            "Please select date and time for booking." +
-                            "</span>";
-
-                        return;
-
-                    }
-
-
-                    /* SUCCESS */
-
-                    status.innerHTML =
-                        "<span class='success'>" +
-                        "✓ Table Reserved Successfully!" +
-                        "</span>";
-
-                }
-            );
-
+        // 5. Check the table booking details
+        document.getElementById("bookingForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let name = document.getElementById("custName").value.trim();
+            let email = document.getElementById("custEmail").value.trim();
+            let mobile = document.getElementById("custMobile").value.trim();
+            let guests = Number(document.getElementById("guestCount").value);
+            let dateTime = document.getElementById("bookingDateTime").value;
+            let status = document.getElementById("bookingStatus");
+
+            if (name === "") {
+                status.innerText = "Please enter your name.";
+            } else if (!email.includes("@") || !email.includes(".")) {
+                status.innerText = "Please enter a valid email.";
+            } else if (mobile.length !== 10 || isNaN(mobile)) {
+                status.innerText = "Mobile number must contain 10 digits.";
+            } else if (guests < 1 || guests > 20) {
+                status.innerText = "Please enter 1 to 20 guests.";
+            } else if (dateTime === "") {
+                status.innerText = "Please select booking date and time.";
+            } else {
+                status.innerText = "Table booked successfully!";
+                document.getElementById("bookingForm").reset();
+            }
+        });
     </script>
 
-
 </body>
-
 </html>
-```
